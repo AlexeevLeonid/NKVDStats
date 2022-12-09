@@ -17,7 +17,7 @@ namespace NKVDStats.src
             string BPlace;
             PersonReader reader = new PersonReader();
             while ((person = reader.GetNext()) is not null)
-                if (person.DCause == "ВМН")
+                //if (person.DCause == "ВМН")
                     result.Add(person);
             result.WriteAllStats();
         }

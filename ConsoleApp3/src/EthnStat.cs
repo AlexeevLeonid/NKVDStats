@@ -5,7 +5,7 @@ namespace NKVDStats.src
 {
     public class EthnStat
     {
-        static StreamWriter sw = new StreamWriter("C:\\Users\\leoni\\source\\repos\\ConsoleApp3\\ConsoleApp3\\results\\Этнический состав растрелянных.txt");
+        static StreamWriter sw = new StreamWriter("C:\\Users\\leoni\\source\\repos\\ConsoleApp3\\ConsoleApp3\\results\\Этнический состав.txt");
 
         public static Dictionary<string, EthnStat> All = new Dictionary<string, EthnStat>();
         public string EthnName;
@@ -47,7 +47,7 @@ namespace NKVDStats.src
         {
             foreach (var item in All.OrderByDescending(i => i.Value.count))
             {
-                sw.WriteLine(item.Key + Tabb(item.Key.Length, 5) + item.Value.count);
+                sw.WriteLine(item.Key + Tabb(item.Key.Length, 5) + item.Value.count + "\t\t" + item.Value.count * 100 / 41757 + "%");
             }
             sw.WriteLine("\n\n\n======================БОЛЕЕ ТОЧНАЯ ИНФОРМАЦИЯ========================\n\n\n");
             foreach (var item in All.OrderByDescending(i => i.Value.count))

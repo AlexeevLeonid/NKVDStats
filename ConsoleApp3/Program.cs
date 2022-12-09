@@ -1,5 +1,6 @@
 ﻿
 using NKVDStats;
+using NKVDStats.src;
 
 
 //Page page = new Page();

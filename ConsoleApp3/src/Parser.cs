@@ -1,13 +1,13 @@
-﻿namespace NKVDStats
+﻿namespace NKVDStats.src
 {
-    class Page
+    class Parser
     {
         public static HttpClient client = new HttpClient();
 
         public static string page;
 
         public int currentPos = 0;
-        static StreamWriter sw = new StreamWriter("C:\\Users\\leoni\\source\\repos\\ConsoleApp3\\ConsoleApp3\\persons.txt");
+        static StreamWriter sw = new StreamWriter("C:\\Users\\leoni\\source\\repos\\ConsoleApp3\\ConsoleApp3\\results\\persons.txt");
         static List<string> urls;
         static string url = "https://nkvd.memo.ru/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:CargoQuery&limit=20&offset=40000&tables=persons&fields=_pageName%3D%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F%2Cgender%3Dgender%2Cethn%3Dethn%2Cethn_addendum%3Dethn+addendum%2Cb_date%3Db+date%2Cb_place%3Db+place%2Cb_addendum%3Db+addendum%2Cd_date%3Dd+date%2Cd_place%3Dd+place%2Cd_cause%3Dd+cause%2Cd_addendum%3Dd+addendum%2Ckp_state%3Dkp+state%2Ckp_cand%3Dkp+cand%2Ckp_in%3Dkp+in%2Ckp_out%3Dkp+out%2Ckp_addendum%3Dkp+addendum%2Cksm_state%3Dksm+state%2Cksm_in%3Dksm+in%2Cksm_out%3Dksm+out%2Cksm_addendum%3Dksm+addendum%2Cbund%3Dbund%2Cbund_addendum%3Dbund+addendum%2Caddendum%3Daddendum%2Cdifference%3Ddifference&max+display+chars=300";
 
@@ -21,7 +21,7 @@
                 Console.SetCursorPosition(1, 1);
                 Console.WriteLine("Обрабатывается страница номер \t : " + count++);
                 GetDataFromPage();
-                
+
             }
             sw.Close();
         }
@@ -113,7 +113,8 @@
             else return "";
         }
 
-        public string GetIsShot() { 
+        public string CauseDeath()
+        {
             return GetField("\"field_d_cause\">");
         }
 
@@ -130,7 +131,7 @@
             res += GetBPlace() + "\t";
             res += GetBYear() + "\t";
             res += GetYearCp() + "\t";
-            res += GetIsShot() + "\t";
+            res += CauseDeath() + "\t";
             res += GetDPlace() + "\t";
             return res;
         }
